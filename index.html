@@ -4,17 +4,16 @@
 <meta charset="utf-8">
 <title>MACHRISS - Microfinance Management System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!--
-  MAAGIZO:
-  1) Weka URL yako ya Apps Script /exec hapa chini (badilisha SRC_URL).
-     Inapatikana kwenye Apps Script > Deploy > Manage deployments.
-     Mfano: https://script.google.com/macros/s/AKfycbxXXXXXXXXXXXXXXXXXX/exec
-  2) Panda faili hili (hata likiwa peke yake) kwenye GitHub Pages, Netlify Drop,
-     au huduma nyingine ya kuhifadhi kurasa tuli (static hosting), bure.
-  3) Fungua URL ya faili hili kwenye Chrome, kisha "Install page as app" /
-     "Cast, save, and share" kama ulivyofanya hapo awali. Hii ndiyo itakayokuwa
-     app yako - haitaonyesha tena tangazo la Google.
--->
+
+<!-- PWA: manifest, icons, theme -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f3b3a">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MACHRISS">
+
 <style>
   html, body { margin:0; padding:0; height:100%; overflow:hidden; background:#0f3b3a; }
   iframe { position:fixed; inset:0; width:100%; height:100%; border:0; }
@@ -29,5 +28,13 @@
     title="MACHRISS - Microfinance Management System"
     allow="clipboard-read; clipboard-write"
     onload="document.getElementById('ld').style.display='none'"></iframe>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+  </script>
 </body>
 </html>
